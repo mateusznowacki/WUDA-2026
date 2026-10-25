@@ -27,11 +27,11 @@ WORKDIR /app
 
 COPY --from=builder /wheels /wheels
 RUN pip install --no-index --find-links=/wheels /wheels/* && rm -rf /wheels
-
-COPY --chown=app:app . .
+COPY --chown=app:app . . 
 
 # Collect static files at build time (dummy key is only used for this step)
 RUN DJANGO_SECRET_KEY=build-only-dummy-key python manage.py collectstatic --noinput \
+    && sed -i 's/\r$//' docker-entrypoint.sh \
     && chmod +x docker-entrypoint.sh \
     && chown -R app:app /app
 
