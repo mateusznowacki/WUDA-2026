@@ -34,7 +34,7 @@ DEBUG = env_bool('DJANGO_DEBUG', False)
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 if not SECRET_KEY:
     if DEBUG:
-        SECRET_KEY = 'insecure-dev-only-key'
+        SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'insecure-dev-only-key')
     else:
         raise RuntimeError('DJANGO_SECRET_KEY must be set when DJANGO_DEBUG is off')
 
