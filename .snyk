@@ -1,0 +1,7 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.25.0
+ignore:
+  SNYK-PYTHON-SQLPARSE-21248801:
+    - '*':
+        reason: 'Brak patcha (no direct upgrade or patch); OutputPHPFilter nie jest wykorzystywany w projekcie Django'
+patch: {}
